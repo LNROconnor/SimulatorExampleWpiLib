@@ -71,6 +71,9 @@ public class Drivetrain {
   private final Field2d m_fieldSim = new Field2d();
   private final LinearSystem<N2, N2, N2> m_drivetrainSystem =
       LinearSystemId.identifyDrivetrainSystem(1.98, 0.2, 1.5, 0.3);
+
+
+      
   private final DifferentialDrivetrainSim m_drivetrainSimulator =
       new DifferentialDrivetrainSim(
           m_drivetrainSystem, DCMotor.getCIM(2), 8, kTrackWidth, kWheelRadius, null);
@@ -100,8 +103,6 @@ public class Drivetrain {
 
     m_leftLeader.configNeutralDeadband(0.001);
     m_rightLeader.configNeutralDeadband(0.001);
-
-
 
     m_leftLeader.configNominalOutputForward(0,30);
     m_leftLeader.configNominalOutputReverse(0,30);

@@ -83,4 +83,9 @@ public class Robot extends TimedRobot {
   public void simulationPeriodic() {
     m_drive.simulationPeriodic();
   }
+
+  public void disabledPeriodic(){
+    m_drive.drive(0,0);
+  }
+
 }
