@@ -17,9 +17,11 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import java.util.List;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
 public class Robot extends TimedRobot {
   private final XboxController m_controller = new XboxController(0);
-
+  //private final XboxController secondController = new XboxController(1);
   // Slew rate limiters to make joystick inputs more gentle; 1/3 sec from 0
   // to 1.
   private final SlewRateLimiter m_speedLimiter = new SlewRateLimiter(3);
@@ -29,6 +31,8 @@ public class Robot extends TimedRobot {
   private final RamseteController m_ramsete = new RamseteController();
   private final Timer m_timer = new Timer();
   private Trajectory m_trajectory;
+
+  private final WPI_TalonFX elevator = new WPI_TalonFX(6);
 
   @Override
   public void robotInit() {
@@ -77,6 +81,8 @@ public class Robot extends TimedRobot {
     // the right by default.
     double rot = -m_rotLimiter.calculate(m_controller.getRightX()) * Drivetrain.kMaxAngularSpeed;
     m_drive.drive(xSpeed, rot);
+    elevator.set(m_controller.getLeftTriggerAxis()-m_controller.getRightTriggerAxis());
+    
   }
 
   @Override
